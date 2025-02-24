@@ -1,0 +1,15 @@
+barplot(women$weight, ylab = "lbs", main = "Weight in pounds", col = "purple" )
+
+
+barplot(women$height, ylab = "inches", main = "height in inches", col = "green" )
+
+
+hist(women$weight, main = " women height", col = "skyblue", xlab = "Weight (lbs)", ylab = "Frequency"  )
+
+hist(women$height, xlab = "inches", ylab = "Frequency", main = "height in inches", col = "lightgray" )
+
+
+
+boxplot(women$height, main = "Women Height measured", ylab = "Inches", col = "gold" )
+
+boxplot(women$weight, main = "Women Weight measured", ylab = "lbs", col = "cyan" )
