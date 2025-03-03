@@ -2,19 +2,7 @@ library(ggplot2)
 
 cars <- data.frame(mtcars)
 
+ggplot(cars, aes(x = mpg, fill = "orange" )) + geom_histogram(bins = 10)+
+  labs( title = "Distribution of MPG", x = "miles per gallons")
 
-ggplot(cars, aes( x = wt, y = hp, colour = rownames(cars), size = mpg)) +
-     geom_point() +
-     ggtitle(" Horse Power and Weight ") +
-     
-     labs(
-         colour = "Cars",
-         size = "Miles per Gallons",
-         x = "Weight",
-         y = "Horse Power"
-       ) +
-     
-     theme(
-         legend.text = element_text(size = 8),
-         legend.key.size = unit(0.5, "cm")
-       )
+
