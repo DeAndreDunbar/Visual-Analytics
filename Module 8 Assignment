@@ -1,0 +1,26 @@
+library(ggplot2)
+library(tidyverse)
+
+cars <- mtcars
+
+
+cars %>%
+ggplot(aes(x = mpg, y = hp, colour = rownames(cars), size = disp)) +
+  geom_point( ) +
+  geom_smooth(method = "lm", se = FALSE, colour = "black") +
+  labs(title = "correlation analysis: MPG and HP", x = "Miles per Gallons", y = "Horse power", colour = "Cars" ) +
+  theme( legend.text = element_text(size = 6),
+         legend.title = element_text(size = 8)) +
+  guides(size = "none")
+
+
+
+cars %>%
+  ggplot(aes(x = disp, y = mpg, colour = rownames(cars), size = disp)) +
+  geom_point( ) +
+  geom_smooth(method = "lm", se = FALSE, colour = "black") +
+  labs(title = "correlation analysis: MPG and DISP", x = "displacement", y = "Miles per Gallons", colour = "cars" ) +
+  theme( legend.text = element_text(size = 6),
+         legend.title = element_text(size = 8)) +
+  guides(size = "none")
+
