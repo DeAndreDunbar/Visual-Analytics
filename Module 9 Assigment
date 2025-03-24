@@ -1,0 +1,6 @@
+library(ggplot2)
+air <- airquality
+
+
+ggplot(air, aes(Ozone, Solar.R, colour = Temp, size = Wind, group = Month)) + geom_point() +  
+    labs(title = "Airquality Visualization", x = "Solar radiation", y = "Ozone", colour = "Temperature")
