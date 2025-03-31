@@ -1,0 +1,13 @@
+library(ggplot2)
+
+hotdogs <- read.csv("http://datasets.flowingdata.com/hot-dog-contest-winners.csv")
+
+
+
+ggplot(hotdogs, aes(Year,Dogs.eaten, fill = factor(New.record))) +
+
+geom_col(width = 0.9) + labs(title = "Hot Dogs Eating Contest ", y = "Hot Dogs Eaten", fill = "New Record") +  
+
+scale_fill_manual(values = c("0" = "black", "1" = "gold"),
+                  labels = c("No", "Yes")) + 
+theme_light()    
