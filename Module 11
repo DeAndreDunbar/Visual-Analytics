@@ -1,0 +1,11 @@
+library(ggplot2)
+library(ggExtra)
+library(ggthemes)
+
+
+
+plot <- ggplot(mtcars,aes(mpg, wt, colour = rownames(mtcars))) + geom_point(show.legend = FALSE) + labs(title = "mpg vs wt") + theme(legend.position = "none") +
+theme_tufte(ticks=F) 
+ggMarginal(plot, type = "histogram", fill="transparent") 
+
+
