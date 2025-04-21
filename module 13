@@ -1,0 +1,18 @@
+library(animation)
+
+
+df <- na.omit(airquality)
+df$Date <- with(df, as.Date(paste(1973, Month, Day, sep = "-")))
+df <- df[order(df$Date), ]
+
+
+saveGIF({
+  for (i in 2:nrow(df)) {
+    plot(df$Temp[1:i],df$Date[1:i],
+            col = "tomato",
+            main = "Temperature Over Time",
+            ylab = "Date",
+            xlab = "Temp (F)")
+  }
+}, movie.name = "temp_plot.gif")
+
