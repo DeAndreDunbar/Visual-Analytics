@@ -7,6 +7,7 @@ library(scales)
 library(magick)
 library(gganimate)
 
+# Kaggle code
 Landings <- read.csv("c:/Users/deand/Downloads/Landings.csv")
 
 meteorites.geo <- Landings %>%
@@ -14,15 +15,17 @@ meteorites.geo <- Landings %>%
   filter(reclong<=180 & reclong>=-180 & (reclat!=0 | reclong!=0)) # filter out weird locations 
 
 
+# getting the world map from maps package
 World_Map <- map_data("world")
 
-
+# Display map
 World_Map
 
+# Turning Fell and Found as factors
 meteorites.geo$fall <- factor(meteorites.geo$fall, levels = c("Fell","Found"), labels = c("yes", "no"))
 
 
-    
+# plotting fell and found meteorites on the map
 ggplot() +
       
   geom_map(data = World_Map, map = World_Map,aes(map_id = region)) +
@@ -34,11 +37,15 @@ coord_fixed(xlim = c(-180, 180), ylim = c(-90, 90)) +
   
   labs(title = "Meteor Landings Observed", x = "Longitude", y = "Latitude", color = "Observed")
 
-      
+
+
+# plotiing dot plot
+
 plot( meteorites.geo$year, meteorites.geo$mass..g., xlim = c(1500, 2000), ylim = c(0, 80000), col = "red" , main = "Mass over time", xlab = "Year", ylab = "Mass in Grams") 
   
     
     
+# plotting histogram
 
 ggplot(data = meteorites.geo, aes(x = mass..g., fill = fall)) +
   
@@ -52,6 +59,7 @@ ggplot(data = meteorites.geo, aes(x = mass..g., fill = fall)) +
 
 meteorites.geo$year <- as.numeric(meteorites.geo$year)
 
+# Filtering for sumperyear and for meanperyear
 
 SumPerYear <- meteorites.geo %>%
   group_by(year) %>%
@@ -64,6 +72,7 @@ MeanPerYear <- meteorites.geo %>%
   ungroup()
 
 
+# Plot the sumperyear and meanperyear
 
 ggplot(SumPerYear, aes(x = year, y = Sum_mass)) +
   
@@ -86,12 +95,17 @@ ggplot(MeanPerYear, aes(x = year, y = mean_mass)) +
   theme_minimal()
 
 
-  
+# Animate meteorite landing plot
+
+# Making sure year is treated as number
 meteorites.geo$years <- as.numeric(meteorites.geo$year)
+
+# No duplicates
 years <- sort(unique(meteorites.geo$years))
 
 
-    
+# plotting the animation    
+
     plot <- ggplot() +
       
      geom_map(data = World_Map, map = World_Map,aes(map_id = region)) +
@@ -110,7 +124,7 @@ years <- sort(unique(meteorites.geo$years))
       shadow_mark()
     
    
-   
+# Saving animation as gif    
   anim_save("meteors.gif", plot)
 
 
