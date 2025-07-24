@@ -26,6 +26,7 @@ meteorites.geo$fall <- factor(meteorites.geo$fall, levels = c("Fell","Found"), l
 
 
 # plotting fell and found meteorites on the map
+
 ggplot() +
       
   geom_map(data = World_Map, map = World_Map,aes(map_id = region)) +
